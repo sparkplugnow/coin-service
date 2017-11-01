@@ -6,6 +6,7 @@ var transactionSchema = new Schema({
       to: String,
       amount: Number,
       state: String,
+      comment: String,
       created_at: Date,
       updated_at: Date,    
   });
