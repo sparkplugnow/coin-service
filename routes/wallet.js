@@ -16,11 +16,11 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/', function(req, res, next) {
-  const { owner, account_number, balance  } = req.body;
+  const { account_number, balance  } = req.body;
 
 
     const newWallet = Wallet({
-      owner,
+      owner:req.user.username,
       account_number,
       balance,
       admin: false

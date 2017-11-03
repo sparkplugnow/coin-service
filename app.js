@@ -5,18 +5,17 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const creds = require('./creds');
-
+//const creds = require('./creds');
 const index = require('./routes/index');
 const users = require('./routes/users');
 const wallet = require('./routes/wallet');
 
 const app = express();
-
-const mongoDb = creds.creds.mongoDb
-mongoose.connect(mongoDb, {
-  useMongoClient: true
-});   
+mongoose.connect('mongodb://localhost/coinservice')
+//const mongoDb = creds.creds.mongoDb
+//mongoose.connect(mongoDb, {
+//  useMongoClient: true
+//});   
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
