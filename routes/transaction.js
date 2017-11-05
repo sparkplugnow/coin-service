@@ -17,34 +17,33 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/', function(req, res, next) {
-  const { amount  } = req.body;
-    // const newTransaction = Transaction({
-    //   from,
-    //   to,
-    //   amount   
-    //   });
-    //    // save the wallet
-    //    newTransaction.save(function(err) {
-    //     if (err) {
-    //       throw err;
-    //     } 
-    //     console.log('Transaction created!');
-    //     res.send('Transaction created')
-   // });
+  const { from, to, amount  } = req.body;
 
-   var query = {"_id": '59fe6b8140dff26ff07365d0'};
-   var update = {$inc : {balance : -amount}}
-   var options = {new: true};
-   Wallet.findOneAndUpdate(query, update, options, function(err, wallet) {
+
+   const options = {new: true};
+   Wallet.findOneAndUpdate({"_id": from}, {$inc : {balance : -amount}}, options, function(err, walletFrom) {
      if (err) {
-       console.log('got an error');
+       res.send(err);
      }
-   
-     res.send(wallet)
-     // at this point person is null.
+     console.log(walletFrom);
+
+      Wallet.findOneAndUpdate({"_id": to}, {$inc : {balance : amount}}, options, function(err, walletTo) {
+      if (err) {
+        res.send(err);
+      }
+      
+      console.log(walletTo);
+      
+     res.send({
+       walletFrom: walletFrom.balance,
+       walletTo: walletTo.balance
+     })  
+    });
+
+
+ 
    });
 
-  //  Transaction.findOneAndUpdate()
 
 
 
@@ -55,7 +54,6 @@ router.get('/:username', function(req, res, next) {
   
    Wallet.find({username: req.params.username}, function(err, username) {
      if (err) throw err;
-
      res.send(username);
    });
 
