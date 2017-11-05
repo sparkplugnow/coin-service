@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const walletSchema = new Schema({
       owner: String,
-      account_number: Number,
+      account_number: String,
       balance: Number,
       created_at: Date,
       updated_at: Date,    
