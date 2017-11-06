@@ -1,11 +1,8 @@
 <%include partials/header.ejs%>
-<div class="container">
+<div class="row">
+    <%=user%>
     <h1><%=user.firstname %><%= user.lastname %><h1>
-   <%=user.balance %>
+   <%=wallet.balance %>
     <%=user.username %>
-
-    <%if (wallet.owner==user._id){%>
-        
-    <%}%>
 </div>
 <%include partials/footer.ejs%>

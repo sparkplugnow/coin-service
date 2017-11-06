@@ -7,7 +7,6 @@ router.get('/', function(req, res, next) {
   
     Wallet.find({}, function(err, users) {
       if (err) throw err;
-  
       res.send(users);
     });
   
@@ -15,9 +14,7 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/', function(req, res, next) {
-  const { account_number, balance  } = req.body;
-
-
+  const { account_number, balance } = req.body;
     const newWallet = Wallet({
       owner:req.user._id,
       account_number,
@@ -29,10 +26,10 @@ router.post('/', function(req, res, next) {
         if (err) {
           console.log(err)
           throw err;
-        } 
+        }
   
         console.log('Wallet created!');
-        res.send('wallet created')
+        res.send('wallet created');
         });
     });
 

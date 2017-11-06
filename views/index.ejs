@@ -7,12 +7,13 @@
     <div class="page-header">USER</div>
     <div>
       <% users.forEach(function(user){%>
-          <div class='well'><a href=user/<%= user.username%>><%= user.username%> </a></div> 
+          <div class='well'><a href=users/<%= user._id%>><%= user.username%> </a></div> 
+          
         <%})%>
   </div>
  </div>
   <div class="col-md-6 text-center">
-    <div class="page-header">balance%</div>
+    <div class="page-header">BALANCE</div>
     <div>
       <% wallets.forEach(function(wallet){%>
         <div class='well'>
@@ -22,16 +23,4 @@
     </div>
   </div>
 </div>
-
-                  <!-- DUMP CONTENT END -->
-
-      </tbody>
-
-    </table>
-  </div>
-</div>
-
-</div>
-
-  
    

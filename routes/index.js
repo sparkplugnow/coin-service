@@ -3,7 +3,7 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const Transaction =  require('../models/Transaction.js');
 const User = require('../models/User');
-const Wallet = require('../models/Transaction.js');
+const Wallet = require('../models/Wallet');
 //const creds = require('../creds');
 
 router
@@ -26,21 +26,7 @@ router
       });
   })
 
-router
-  .get('/user/:username', function (req, res) {
-    Wallet
-      .getAllWallets(function (err, users) {
-        User
-          .getUserByUsername(req.params.username, function (err, user) {
-            if (err) 
-              throw err;
-            res.render('user', {
-             user: user,
-              users: users
-            });
-          });
-      });
-  });
+
 router.get('/transactions',function(req,res,next){
 Transaction
   .getAllUsers(function (err, transactions) {

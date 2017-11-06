@@ -28,40 +28,41 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
   const {firstname, lastname, username} = req.body;
 
-  const newUser = User({firstname, lastname, username, admin: false});
+  const newUser =new  User({firstname, lastname, username, admin: false});
 
   newUser.save((err, user) => {
     if (err) {
       res.send(err)
     }
 
-    console.log(user.username);
+   // console.log(user.username);
 
-    const newWallet = Wallet({owner: user._id, account_number: guid(), balance: 0});
+    const newWallet =new Wallet({owner: user._id, account_number: guid(), balance: 0});
     // save the wallet
     newWallet.save(function (err, wallet) {
       if (err) {throw err}
       res.send({walletOwner: wallet.owner, account_number:wallet.account_number, username:user.username, walletBalance: wallet.balance})
+console.log(user, wallet)
     })
   })
 });
 
 //get user by username
-router.get('/:username', function (req, res, next) {
+router.get('/:id', function (req, res, next) {
   User
     .find({
-      username: req.params.username
-    }, function (err, users) {
+     _id: req.params.id
+    }, function (err, user) {
       if (err)  throw err;
       Wallet
-        .find({}, function (err, wallets) {
+.find({
+    owner: req.params.id
+  }, function (err, wallet) {
           if (err) 
             throw err;
-          
-          //    console.log('wallet', wallets)
-          res.render('index', {
-            users: users,
-            wallets: wallets
+          res.render('user', {
+            user: user,
+            wallet:wallet
           })
         });
     })
