@@ -7,11 +7,15 @@ const Transaction = require('../models/Transaction')
 router.get('/', function (req, res, next) {
   User
     .find({}, function (err, users) {
-      if (err)  throw err;
+      if (err) 
+        throw err;
+      
       //  console.log('users', users)
       Wallet
         .find({}, function (err, wallets) {
-          if (err) throw err; 
+          if (err) 
+            throw err;
+          
           //    console.log('wallet', wallets)
           res.render('index', {
             users: users,
@@ -25,69 +29,69 @@ router.post('/', function (req, res, next) {
   const {firstname, lastname, username} = req.body;
 
   const newUser = User({firstname, lastname, username, admin: false});
-  console.log(newUser)
-  // save the user
-  newUser.save(function (err) {
+
+  newUser.save((err, user) => {
     if (err) {
-      console.log(err)
-      throw err;
+      res.send(err)
     }
-    const {account_number, balance} = req.body;
-    const newWallet = Wallet({owner: req.body.balance, account_number, balance, admin: false});
+
+    console.log(user.username);
+
+    const newWallet = Wallet({owner: user._id, account_number: guid(), balance: 0});
     // save the wallet
-    newWallet.save(function (err) {
-      if (err) {
-        console.log(err)
-        throw err;
-      }
-
-      console.log('User created!');
-      res.send('user created')
-
-      return {completed: true}
-      })
-    });
-  });
-  //get user by username
-  router.get('/:username', function (req, res, next) {
-
-User
-.find({
-  username: req.params.username
-}, function (err, users) {
-    if (err) 
-      throw err;
-    
-    //  console.log('users', users)
-    Wallet
-      .find({}, function (err, wallets) {
-        if (err) 
-          throw err;
-        
-        //    console.log('wallet', wallets)
-        res.render('index', {
-          users: users,
-          wallets: wallets
-        })
-      });
+    newWallet.save(function (err, wallet) {
+      if (err) {throw err}
+      res.send({walletOwner: wallet.owner, account_number:wallet.account_number, username:user.username, walletBalance: wallet.balance})
     })
-  });
+  })
+});
 
-  //get user by username
-  router.put('/:username', function (req, res, next) {
+//get user by username
+router.get('/:username', function (req, res, next) {
+  User
+    .find({
+      username: req.params.username
+    }, function (err, users) {
+      if (err)  throw err;
+      Wallet
+        .find({}, function (err, wallets) {
+          if (err) 
+            throw err;
+          
+          //    console.log('wallet', wallets)
+          res.render('index', {
+            users: users,
+            wallets: wallets
+          })
+        });
+    })
+});
 
-    // get a user by username and update based on req.params.username
-    User
-      .findOneAndUpdate({
-        username: req.params.username
-      }, {
-        username: req.body.username
-      }, function (err, user) {
-        if (err) 
-          throw err;
-        console.log(user)
-        res.send(user)
-      });
-  });
+//get user by username
+router.put('/:username', function (req, res, next) {
 
-  module.exports = router;
+  // get a user by username and update based on req.params.username
+  User
+    .findOneAndUpdate({
+      username: req.params.username
+    }, {
+      username: req.body.username
+    }, function (err, user) {
+      if (err) 
+        throw err;
+      console.log(user)
+      res.send(user)
+    });
+
+});
+
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+}
+
+module.exports = router;
