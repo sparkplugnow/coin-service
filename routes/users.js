@@ -51,16 +51,26 @@ router.post('/', function (req, res, next) {
   //get user by username
   router.get('/:username', function (req, res, next) {
 
-    User
-      .find({
-        username: req.params.username
-      }, function (err, users) {
+User
+.find({
+  username: req.params.username
+}, function (err, users) {
+    if (err) 
+      throw err;
+    
+    //  console.log('users', users)
+    Wallet
+      .find({}, function (err, wallets) {
         if (err) 
           throw err;
         
-        res.send(users);
+        //    console.log('wallet', wallets)
+        res.render('index', {
+          users: users,
+          wallets: wallets
+        })
       });
-
+    })
   });
 
   //get user by username
@@ -78,7 +88,6 @@ router.post('/', function (req, res, next) {
         console.log(user)
         res.send(user)
       });
-
   });
 
   module.exports = router;

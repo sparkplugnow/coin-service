@@ -14,13 +14,12 @@ router.get('/', function(req, res, next) {
   });
 
 
-
 router.post('/', function(req, res, next) {
   const { account_number, balance  } = req.body;
 
 
     const newWallet = Wallet({
-      owner:req.user.username,
+      owner:req.user._id,
       account_number,
       balance,
       admin: false

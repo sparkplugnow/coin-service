@@ -11,7 +11,8 @@ const walletSchema = new Schema({
   });
   
   // on every save, add the date
-  walletSchema.pre('save', function(next) {
+  walletSchema.pre('save', function(req,res,next) {
+    //this.owner=req.body._id;
     const currentDate = new Date();
   
     // change the updated_at field to current date
