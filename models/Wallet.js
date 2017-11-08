@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 
 const walletSchema = new Schema({
-      owner: Number,
+      owner: String,
       account_number: String,
       balance: Number,
       created_at: Date,
@@ -11,7 +11,7 @@ const walletSchema = new Schema({
   });
   
   // on every save, add the date
-  walletSchema.pre('save', function(req,res,next) {
+  walletSchema.pre('save', function(next) {
     //this.owner=req.body._id;
     const currentDate = new Date();
   

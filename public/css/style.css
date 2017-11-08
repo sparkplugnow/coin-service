@@ -1,7 +1,25 @@
 body {
   padding-top: 80px;
+  background-color:#ECF0F1;
+  font-family:tahoma;
 }
-
+nav .navbar-brand{
+	padding-top:0px;
+	font-size: 40px;
+	height:60px;
+    font-family:"Times New Roman", Times, serif;
+}
+nav ul li{
+    font-size: 20px;
+	padding-right: 10px;
+    font-family:"Lucida Console", Monaco, monospace ;
+}
+#body{
+	min-height:500px;
+}
+.dropdown-menu li{
+    font-family:"Comic Sans MS", cursive, sans-serif;
+}
 #sidebar {
   position: fixed;
   top: 50px;
@@ -26,7 +44,8 @@ body {
 .side-bar li a:focus {
   background-color: #333;
 }
+#username{
 
-.tmargin {
-  margin-top: 15px;
+}
+#balance{
 }

@@ -1,13 +1,13 @@
 <%include partials/header%>       
        
        <!-- START CONTENT END -->
-<div class="row">
+<div class="row jumbotron">
 
   <div class="col-md-6 text-center">
     <div class="page-header">USER</div>
     <div>
       <% users.forEach(function(user){%>
-          <div class='well'><a href=users/<%= user._id%>><%= user.username%> </a></div> 
+          <div class='well' id='username'><a href=<%= user._id%>><%= user.username%> </a></div> 
           
         <%})%>
   </div>
@@ -16,11 +16,12 @@
     <div class="page-header">BALANCE</div>
     <div>
       <% wallets.forEach(function(wallet){%>
-        <div class='well'>
+        <div class='well text-success' id='balance'>
           <%= wallet.balance%>
         </div>
         <%})%>
     </div>
   </div>
 </div>
+<%include partials/footer%>
    

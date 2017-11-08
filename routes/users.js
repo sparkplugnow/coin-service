@@ -4,7 +4,7 @@ const User = require('../models/User');
 const Wallet = require('../models/Wallet')
 const Transaction = require('../models/Transaction')
 
-router.get('/', function (req, res, next) {
+/*router.get('/', function (req, res, next) {
   User
     .find({}, function (err, users) {
       if (err) 
@@ -93,6 +93,6 @@ function guid() {
       .substring(1);
   }
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-}
+}*/
 
 module.exports = router;
