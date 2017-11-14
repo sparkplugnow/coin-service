@@ -1,71 +1,62 @@
 var express = require('express');
 var router = express.Router();
-const User = require('../models/User');
-const Wallet = require('../models/Wallet')
-const Transaction = require('../models/Transaction')
+const User = require('../models/User.js');
+const Wallet = require('../models/Wallet.js');
 
-/*router.get('/', function (req, res, next) {
+/**router.get('/', function (req, res, next) {
+
   User
     .find({}, function (err, users) {
       if (err) 
-        throw err;
+        res.send(err);
       
-      //  console.log('users', users)
-      Wallet
-        .find({}, function (err, wallets) {
-          if (err) 
-            throw err;
-          
-          //    console.log('wallet', wallets)
-          res.render('index', {
-            users: users,
-            wallets: wallets
-          })
-        });
+      res.send(users);
     });
-})
+
+});
 
 router.post('/', function (req, res, next) {
   const {firstname, lastname, username} = req.body;
 
-  const newUser =new  User({firstname, lastname, username, admin: false});
+  const newUser = User({firstname, lastname, username, admin: false});
 
-  newUser.save((err, user) => {
+  newUser.save((err, saveResponse) => {
     if (err) {
       res.send(err)
     }
 
-   // console.log(user.username);
+    console.log(saveResponse.username);
 
-    const newWallet =new Wallet({owner: user._id, account_number: guid(), balance: 0});
+    const newWallet = Wallet({owner: saveResponse._id, account_number: guid(), balance: 0});
+
     // save the wallet
-    newWallet.save(function (err, wallet) {
-      if (err) {throw err}
-      res.send({walletOwner: wallet.owner, account_number:wallet.account_number, username:user.username, walletBalance: wallet.balance})
-console.log(user, wallet)
-    })
-  })
-});
+    newWallet.save(function (err, walletResponse) {
+      if (err) {
+        console.log(err)
+        res.send(err);
+      }
 
-//get user by username
-router.get('/:id', function (req, res, next) {
+      res.send({walletOwner: walletResponse.owner, account_number: walletResponse.account_number, username: saveResponse.username, walletBalance: walletResponse.balance})
+    })
+
+  })
+
+});
+//    // save the wallet    newWallet.save(function(err) {     if (err) {
+// console.log(err)       throw err;     }     console.log('Wallet created!');
+// get user by username
+router.get('/:username', function (req, res, next) {
+
   User
     .find({
-     _id: req.params.id
-    }, function (err, user) {
-      if (err)  throw err;
-      Wallet
-.find({
-    owner: req.params.id
-  }, function (err, wallet) {
-          if (err) 
-            throw err;
-          res.render('user', {
-            user: user,
-            wallet:wallet
-          })
-        });
-    })
+      username: req.params.username
+    }, function (err, users) {
+      if (err) 
+        throw err;
+      
+      res.send(users);
+    });
+
 });
 
 //get user by username
@@ -93,6 +84,6 @@ function guid() {
       .substring(1);
   }
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-}*/
+} */
 
 module.exports = router;

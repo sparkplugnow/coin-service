@@ -49,9 +49,7 @@ router.post('/', function (req, res, next) {
 
       res.send({walletFrom: walletFrom.balance, walletTo: walletTo.balance})
     });
-
   });
-
 });
 
 //get wallet by username

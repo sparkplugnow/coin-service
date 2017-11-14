@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   const { account_number, balance } = req.body;
     const newWallet = Wallet({
-      owner:req.user._id,
+      owner:String,
       account_number,
       balance,
       admin: false
@@ -41,7 +41,6 @@ router.get('/:username', function(req, res, next) {
 
      res.send(username);
    });
-
 });
 
 module.exports = router;

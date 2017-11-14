@@ -7,24 +7,19 @@ const Wallet = require('../models/Wallet');
 //const creds = require('../creds');
 
 router.get('/', function (req, res, next) {
-  User
-    .find({}, function (err, users) {
-      if (err) 
-        throw err;
-      
-      //  console.log('users', users)
-      Wallet
-        .find({}, function (err, wallets) {
-          if (err) 
-            throw err;
-          
-          //    console.log('wallet', wallets)
-          res.render('index', {
-            users: users,
-            wallets: wallets
-          })
-        });
-    });
+User
+  .find({}, function (err, users) {
+    if (err) 
+      throw err;
+    Wallet
+      .find({},function(err,wallets){
+        if (err)throw err;
+        res.render('index', {
+          users: users,
+          wallets: wallets
+        })
+      })
+  })
 })
 
 router.post('/', function (req, res, next) {
@@ -34,12 +29,10 @@ router.post('/', function (req, res, next) {
 
   newUser.save((err, user) => {
     if (err) {
-      res.send(err)
+      throw err;
     }
 
-    // console.log(user.username);
-
-    const newWallet = new Wallet({owner: user._id, account_number: guid(), balance: 0});
+    const newWallet = new Wallet({owner: user.username, account_number: guid(), balance: 0});
     // save the wallet
     newWallet.save(function (err, wallet) {
       if (err) {
@@ -51,13 +44,14 @@ router.post('/', function (req, res, next) {
   })
 });
 
-//get user by username
-router.get('/:id', function (req, res, next) {
+router.get('/:username', function (req, res, next) {
   User
     .find({}, function (err, users) {
-      if (err) throw err 
-        User.find({
-          _id: req.params.id
+      if (err) 
+        throw err
+      User
+        .findOne({
+          username: req.params.username
         }, function (err, user) {
           if (err) 
             throw err;
@@ -69,38 +63,12 @@ router.get('/:id', function (req, res, next) {
                 throw err;
               res.render('user', {
                 users: users,
-                user: user,
+                user :user,
                 wallet: wallet
               });
             })
         })
     })
-});
-router.get('/users/:username', function (req, res, next) {
-User
-  .find({}, function (err, users) {
-    if (err) 
-      throw err
-    User
-      .find({
-        username: req.params.username
-      }, function (err, user) {
-        if (err) 
-          throw err;
-        Wallet
-          .find({
-            owner: req.params.id
-          }, function (err, wallet) {
-            if (err) 
-              throw err;
-            res.render('user', {
-              users: users,
-              user: user,
-              wallet: wallet
-            });
-          })
-      })
-  })
 })
 //get user by username
 router.put('/:username', function (req, res, next) {
@@ -117,7 +85,6 @@ router.put('/:username', function (req, res, next) {
       console.log(user)
       res.send(user)
     });
-
 });
 
 function guid() {
@@ -128,7 +95,6 @@ function guid() {
   }
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 }
-
 module.exports = router;
 
 router.get('/transactions', function (req, res, next) {

@@ -50,3 +50,4 @@ module.exports.getUserById = function (id, callback) {
 module.exports.getAllUsers = function (callback) {
   User.find({}, callback);
 }
+
