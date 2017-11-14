@@ -1,69 +1,29 @@
-var express = require('express');
-var router = express.Router();
-const Transaction = require('../models/Transaction.js');
-const User = require('../models/User')
-const Wallet = require('../models/Wallet')
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-router.get('/', function (req, res, next) {
-
-  Transaction
-    .find({}, function (err, transactions) {
-      if (err) 
-        throw err;
-      
-      res.send(transactions);
-    });
-
+var transactionSchema = new Schema({
+    from: String,
+    to: String,
+    amount: Number,
+    state: String,
+    comment: String,
+    created_at: Date,
+    updated_at: Date
 });
 
-router.post('/', function (req, res, next) {
-  const {from, to, amount} = req.body;
+// on every save, add the date
+transactionSchema.pre('save', function (next) {
+    const currentDate = new Date();
 
-  const options = {
-    new: true
-  };
-  Wallet.findOneAndUpdate({
-    "_id": from
-  }, {
-    $inc: {
-      balance: -amount
-    }
-  }, options, function (err, walletFrom) {
-    if (err) {
-      res.send(err);
-    }
-    console.log(walletFrom);
+    // change the updated_at field to current date
+    this.updated_at = currentDate;
 
-    Wallet.findOneAndUpdate({
-      "_id": to
-    }, {
-      $inc: {
-        balance: amount
-      }
-    }, options, function (err, walletTo) {
-      if (err) {
-        res.send(err);
-      }
-
-      console.log(walletTo);
-
-      res.send({walletFrom: walletFrom.balance, walletTo: walletTo.balance})
-    });
-  });
+    if (!this.created_at) 
+        this.created_at = currentDate;
+    
+    next();
 });
 
-//get wallet by username
-router.get('/:username', function (req, res, next) {
+const Transaction = mongoose.model('Transaction', transactionSchema);
 
-  Wallet
-    .find({
-      username: req.params.username
-    }, function (err, username) {
-      if (err) 
-        throw err;
-      res.send(username);
-    });
-
-});
-
-module.exports = router;
+module.exports = Transaction;

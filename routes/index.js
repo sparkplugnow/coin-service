@@ -7,19 +7,20 @@ const Wallet = require('../models/Wallet');
 //const creds = require('../creds');
 
 router.get('/', function (req, res, next) {
-User
-  .find({}, function (err, users) {
-    if (err) 
-      throw err;
-    Wallet
-      .find({},function(err,wallets){
-        if (err)throw err;
-        res.render('index', {
-          users: users,
-          wallets: wallets
+  User
+    .find({}, function (err, users) {
+      if (err) 
+        throw err;
+      Wallet
+        .find({},function (err, wallets) {
+          if (err) 
+            throw err;
+          res.render('index', {
+            users: users,
+            wallets: wallets
+          })
         })
-      })
-  })
+    })
 })
 
 router.post('/', function (req, res, next) {
@@ -63,7 +64,7 @@ router.get('/:username', function (req, res, next) {
                 throw err;
               res.render('user', {
                 users: users,
-                user :user,
+                user: user,
                 wallet: wallet
               });
             })
@@ -86,6 +87,22 @@ router.put('/:username', function (req, res, next) {
       res.send(user)
     });
 });
+router.get('/transactions', function (req, res, next) {
+  Users
+    .find({}, function (err, users) {
+      if (err) 
+        throw err;
+      Transaction
+        .find(function (err, transactions) {
+          if (err) 
+            throw err;
+          res.render('transactions', {
+            users: users,
+            transactions: transactions
+          })
+        })
+    })
+})
 
 function guid() {
   function s4() {
@@ -94,16 +111,6 @@ function guid() {
       .substring(1);
   }
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-}
-module.exports = router;
-
-router.get('/transactions', function (req, res, next) {
-  Transaction
-    .getAllUsers(function (err, transactions) {
-      if (err) 
-        throw err;
-      res.render('transaction', {transactions: transactions})
-    })
-})
+};
 
 module.exports = router;

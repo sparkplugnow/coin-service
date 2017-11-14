@@ -1,6 +1,6 @@
 <%include partials/header.ejs%>
 
-<body class='container' id='body'>
+
   <div class="card-list">
     <div class="card blue">
       <div class="title">Transfer Stats</div><span class="glyphicon glyphicon-upload"></span>
@@ -12,6 +12,7 @@
       <div class="value">5,990</div>
       <div class="stat"><b>4</b>% increase</div>
     </div>
+    
     <div class="card orange">
       <div class="title">Balance</div><span class="glyphicon glyphicon-download"></span>
       <div class="value">$80,990</div>
@@ -27,8 +28,7 @@
     <div class="projects-inner">
       <header class="projects-header">
         <div class="title">LeaderBoard</div>
-      
-         <%var arr=[]%>
+
         <%var keys =Object.keys(wallets)%>
         <div class="count">| <%= keys.length%>  Users</div>
         <span class="glyphicon glyphicon-download-alt"></span></header>
@@ -52,6 +52,4 @@
       </table>
     </div>
   </div>
-</body>
-
-</html>
+<%include partials/footer.ejs%>
