@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sparkplugnow coin-service</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="js/bootstrap.min.js">
+    <!--  <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css"> -->
+
+
+    <!-- Latest compiled and minified CSS CDN-->
+    <link rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4uhref=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css
+        ""crossorigin="anonymous">
+    <link rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        crossorigin="anonymous">
+    <!-- Latest compiled and minified JS CDN-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<nav class="navbar navbar-inverse navbar-fixed-top .nav">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="/"><img src="http://sparkplugnow.com/wp-content/uploads/2017/01/smallsym.png" alt="sparkplug" width='50px' height='50px'></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://github.com/sparkplugnow" target="_blank " class='fa fa-github fa-2x'></a></li>
+                <li><a href="http://www.sparkplugnow.slack.com" target="_blank" class='fa fa-slack fa-2x'></a></li>
+                <li><a href="http://twitter.com/sparkplugnow" target="_blank " class='fa fa-twitter fa-2x'></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle fa fa-user-circle-o fa-2x" data-toggle="dropdown" role="button" aria- - haspopup="true"
+                        aria-expanded="false"> <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <%users.forEach(function(user){%>
+                            <li class='' id='dropdown'><a href=/<%=user.username %>><%= user.username%> </a></li>
+                            <%})%>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="col-md-3">
+
+        <div id="sidebar">
+            <ul class="nav navbar-nav side-bar">
+                <li class="side-bar tmargin"><a href="/"><span class="fa fa-list">&nbsp;</span>Leaderboard</a></li>
+                <li class="side-bar"><a href="/transactions"><span class="fa fa-money">&nbsp;</span>Transactions</a></li>
+                <li class="side-bar"><a href="#"><span class="fa fa-signal">&nbsp;</span>Statistics</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-9">
+
+<body class='container' id='body'>
