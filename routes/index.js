@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-const Transaction = require('../models/Transaction.js');
 const User = require('../models/User');
 const Wallet = require('../models/Wallet');
 //const creds = require('../creds');
@@ -87,23 +86,6 @@ router.put('/:username', (req, res, next) => {
       res.send(user)
     });
 });
-router.get('/transactions', (req, res, next) => {
-  Users
-    .find({},  (err, users)=> {
-      if (err) 
-        throw err;
-      Transaction
-        .find( (err, transactions)=> {
-          if (err) 
-            throw err;
-          res.render('transactions', {
-            users: users,
-            transactions: transactions
-          })
-        })
-    })
-})
-
 function guid() {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)

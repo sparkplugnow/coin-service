@@ -4,7 +4,6 @@ const Wallet =  require('../models/Wallet.js');
 
 
 router.get('/', function(req, res, next) {
-  
     Wallet.find({}, function(err, users) {
       if (err) throw err;
       res.send(users);
