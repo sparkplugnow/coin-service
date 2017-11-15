@@ -5,18 +5,22 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-//const creds = require('./creds');
+const creds = require('./creds');
+
+const Botkit = require('botkit');
+
+
 const index = require('./routes/index');
 const users = require('./routes/users');
 const wallet = require('./routes/wallet');
 const transaction = require('./routes/transaction');
 
 const app = express();
-mongoose.connect('mongodb://localhost/coinservice')
-//const mongoDb = creds.creds.mongoDb
-//mongoose.connect(mongoDb, {
-//  useMongoClient: true
-//});   
+
+const mongoDb = creds.creds.mongoDb
+mongoose.connect(mongoDb, {
+  useMongoClient: true
+});   
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -27,13 +31,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/users',express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
@@ -59,3 +62,7 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+const playlistStore = []
+
+
