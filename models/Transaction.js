@@ -2,17 +2,21 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var transactionSchema = new Schema({
-    from: String,
-    to: String,
-    amount: Number,
-    state: String,
-    comment: String,
-    created_at: Date,
-    updated_at: Date
-});
+
 
 // on every save, add the date
 transactionSchema.pre('save', function (next) {
+      from: String,
+      to: String,
+      amount: Number,
+      state: String,
+      comment: String,
+      created_at: Date,
+      updated_at: Date,    
+  });
+  
+  // on every save, add the date
+  transactionSchema.pre('save', function(next) {
     const currentDate = new Date();
 
     // change the updated_at field to current date

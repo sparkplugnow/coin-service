@@ -15,8 +15,7 @@ router.post('/', function(req, res, next) {
     const newWallet = Wallet({
       owner:String,
       account_number,
-      balance,
-      admin: false
+      balance   
       });
        // save the wallet
        newWallet.save(function(err) {
