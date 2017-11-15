@@ -7,20 +7,16 @@ router.get('/', function(req, res, next) {
   
     Wallet.find({}, function(err, users) {
       if (err) throw err;
-  
       res.send(users);
     });
   
   });
 
 
-
 router.post('/', function(req, res, next) {
-  const { owner, account_number, balance  } = req.body;
-
-
+  const { account_number, balance } = req.body;
     const newWallet = Wallet({
-      owner,
+      owner:String,
       account_number,
       balance   
       });
@@ -29,10 +25,10 @@ router.post('/', function(req, res, next) {
         if (err) {
           console.log(err)
           throw err;
-        } 
+        }
   
         console.log('Wallet created!');
-        res.send('wallet created')
+        res.send('wallet created');
         });
     });
 
@@ -44,7 +40,6 @@ router.get('/:username', function(req, res, next) {
 
      res.send(username);
    });
-
 });
 
 module.exports = router;
