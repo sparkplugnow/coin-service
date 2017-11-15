@@ -33,6 +33,9 @@ nav ul li{
 .dropdown-menu li{
     font-family:"Comic Sans MS", cursive, sans-serif;
 }
+#dropdown a:hover{
+  background-color:#9E9E9E;
+}
 #sidebar {
   position: fixed;
   top: 50px;
