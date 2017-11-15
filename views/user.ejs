@@ -1,0 +1,64 @@
+<%include partials/header.ejs%>
+
+    <body class='container' id='body'>
+        <div class='userpage'>
+            <h1 class='text-center' id='h1'><%=user.username%></h1>
+            <br>
+            <table class="projects-table">
+                <tr class='text-center'>
+                    <th class="table-head text-center">First Name</th>
+                    <th class="table-head text-center">Last Name</th>
+                    <th class='table-head text-center'>Admin</th>
+                    <th class='table-head text-center'>Location</th>
+                    <th class='table-head text-center'>Age</th>
+                    <th class='table-head text-center'>Created At</th>
+                    <th class='table-head text-center'>Updated At</th>
+                </tr>
+                    <tr class="">
+                        <td class='owner text-center'>
+                            <p>
+                            <%=user.firstname%>
+                            </p>
+                            <p></p>
+                        </td>
+                        <td class='owner text-center'>
+                            <p>
+                                <%=user.firstname%>
+                            </p>
+                            <p></p>
+                        </td>
+                        <td class='owner text-center'>
+                            <p>
+                                <%=user.admin%>
+                            </p>
+                            <p></p>
+                        </td>
+                        <td class='owner text-center'>
+                            <p>
+                                <%=user.location%>
+                            </p>
+                            <p></p>
+                        </td>
+                        <td class='owner text-center'>
+                            <p>
+                                <%=user.age%>
+                            </p>
+                            <p></p>
+                        </td>
+                        <td class='owner text-center'>
+                            <p>
+                                <%=user.created_at%>
+                            </p>
+                            <p></p>
+                        </td>
+                        <td class='owner text-center'>
+                            <p>
+                                <%=user.updated_at%>
+                            </p>
+                            <p></p>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+    </body>
+    </html>
