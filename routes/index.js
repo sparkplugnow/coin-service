@@ -5,16 +5,15 @@ const User = require('../models/User');
 const Wallet = require('../models/Wallet');
 //const creds = require('../creds');
 
-router.get('/', (req, res, next)=> {
+router.get('/', function (req, res, next) {
   User
-    .find({},(err, users)=>{
+    .find({}, function (err, users) {
       if (err) 
         throw err;
       Wallet
         .find({})
         .sort('-balance')
         .exec(function (err, wallets) {
-        .find({}, (err, wallets)=> {
           if (err) 
             throw err;
           res.render('index', {
@@ -23,8 +22,7 @@ router.get('/', (req, res, next)=> {
           })
         })
     })
-})  
-  
+})
 
 router.post('/', (req, res, next) => {
   const {firstname, lastname, username} = req.body;
@@ -38,7 +36,7 @@ router.post('/', (req, res, next) => {
 
     const newWallet = new Wallet({owner: user.username, account_number: guid(), balance: 0});
     // save the wallet
-    newWallet.save( (err, wallet)=> {
+    newWallet.save((err, wallet) => {
       if (err) {
         throw err
       }
@@ -49,46 +47,42 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/:username', (req, res, next) => {
-  User
-    .find({},(err, users)=> {
+  User.find({}, (err, users) => {
+    if (err) 
+      throw err
+    User.findOne({
+      username: req.params.username
+    }, (err, user) => {
       if (err) 
-        throw err
-      User
-        .findOne({
-          username: req.params.username
-        }, (err, user)=> {
-          if (err) 
-            throw err;
-          Wallet
-            .find({
-              owner: req.params.id
-            },  (err, wallet)=> {
-              if (err) 
-                throw err;
-              res.render('user', {
-                users: users,
-                user: user,
-                wallet: wallet
-              });
-            })
-        })
+        throw err;
+      Wallet.find({
+        owner: req.params.id
+      }, (err, wallet) => {
+        if (err) 
+          throw err;
+        res.render('user', {
+          users: users,
+          user: user,
+          wallet: wallet
+        });
+      })
     })
+  })
 })
 //get user by username
 router.put('/:username', (req, res, next) => {
 
   // get a user by username and update based on req.params.username
-  User
-    .findOneAndUpdate({
-      username: req.params.username
-    }, {
-      username: req.body.username
-    }, (err, user)=> {
-      if (err) 
-        throw err;
-      console.log(user)
-      res.send(user)
-    });
+  User.findOneAndUpdate({
+    username: req.params.username
+  }, {
+    username: req.body.username
+  }, (err, user) => {
+    if (err) 
+      throw err;
+    console.log(user)
+    res.send(user)
+  });
 });
 function guid() {
   function s4() {
