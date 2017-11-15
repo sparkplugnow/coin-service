@@ -3,7 +3,7 @@ var router = express.Router();
 const User = require('../models/User.js');
 const Wallet = require('../models/Wallet.js');
 
-/**router.get('/', function (req, res, next) {
+router.get('/', function (req, res, next) {
 
   User
     .find({}, function (err, users) {
@@ -35,16 +35,11 @@ router.post('/', function (req, res, next) {
         console.log(err)
         res.send(err);
       }
-
       res.send({walletOwner: walletResponse.owner, account_number: walletResponse.account_number, username: saveResponse.username, walletBalance: walletResponse.balance})
     })
-
   })
-
 });
-//    // save the wallet    newWallet.save(function(err) {     if (err) {
-// console.log(err)       throw err;     }     console.log('Wallet created!');
-// get user by username
+
 router.get('/:username', function (req, res, next) {
 
   User
@@ -53,7 +48,6 @@ router.get('/:username', function (req, res, next) {
     }, function (err, users) {
       if (err) 
         throw err;
-      
       res.send(users);
     });
 
@@ -61,7 +55,6 @@ router.get('/:username', function (req, res, next) {
 
 //get user by username
 router.put('/:username', function (req, res, next) {
-
   // get a user by username and update based on req.params.username
   User
     .findOneAndUpdate({
@@ -74,7 +67,6 @@ router.put('/:username', function (req, res, next) {
       console.log(user)
       res.send(user)
     });
-
 });
 
 function guid() {
@@ -84,6 +76,6 @@ function guid() {
       .substring(1);
   }
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-} */
+} 
 
 module.exports = router;

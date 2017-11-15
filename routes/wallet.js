@@ -9,9 +9,7 @@ router.get('/', function(req, res, next) {
       if (err) throw err;
       res.send(users);
     });
-  
   });
-
 
 router.post('/', function(req, res, next) {
   const { account_number, balance } = req.body;
