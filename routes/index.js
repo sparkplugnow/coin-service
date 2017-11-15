@@ -6,6 +6,7 @@ const User = require('../models/User');
 const Wallet = require('../models/Wallet');
 //const creds = require('../creds');
 
+
 router.get('/', function (req, res, next) {
   User
     .find({}, function (err, users) {
@@ -45,72 +46,25 @@ router.post('/', function (req, res, next) {
   })
 });
 
-router.get('/:username', function (req, res, next) {
-  User
-    .find({}, function (err, users) {
-      if (err) 
-        throw err
-      User
-        .findOne({
-          username: req.params.username
-        }, function (err, user) {
-          if (err) 
-            throw err;
-          Wallet
-            .find({
-              owner: req.params.id
-            }, function (err, wallet) {
-              if (err) 
-                throw err;
-              res.render('user', {
-                users: users,
-                user: user,
-                wallet: wallet
-              });
-            })
-        })
-    })
-})
-//get user by username
-router.put('/:username', function (req, res, next) {
 
-  // get a user by username and update based on req.params.username
+router.get('/', function (req, res, next) {
   User
-    .findOneAndUpdate({
-      username: req.params.username
-    }, {
-      username: req.body.username
-    }, function (err, user) {
-      if (err) 
-        throw err;
-      console.log(user)
-      res.send(user)
-    });
-});
-router.get('/transactions', function (req, res, next) {
-  Users
     .find({}, function (err, users) {
       if (err) 
         throw err;
-      Transaction
-        .find(function (err, transactions) {
+      Wallet
+        .find({})
+        .sort('-balance')
+        .exec(function (err, wallets) {
           if (err) 
             throw err;
-          res.render('transactions', {
+          res.render('index', {
             users: users,
-            transactions: transactions
+            wallets: wallets
           })
         })
     })
-})
+  })
 
-function guid() {
-  function s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-};
 
 module.exports = router;
