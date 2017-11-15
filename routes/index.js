@@ -12,7 +12,9 @@ router.get('/', function (req, res, next) {
       if (err) 
         throw err;
       Wallet
-        .find({},function (err, wallets) {
+        .find({})
+        .sort('-balance')
+        .exec(function (err, wallets) {
           if (err) 
             throw err;
           res.render('index', {
@@ -21,7 +23,8 @@ router.get('/', function (req, res, next) {
           })
         })
     })
-})
+})  
+  
 
 router.post('/', function (req, res, next) {
   const {firstname, lastname, username} = req.body;
