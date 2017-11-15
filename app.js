@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const index = require('./routes/index');
 const users = require('./routes/users');
 const wallet = require('./routes/wallet');
+const transaction = require('./routes/transaction');
 
 const app = express();
 mongoose.connect('mongodb://localhost/coinservice')
@@ -37,6 +38,7 @@ app.use('/users',express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/wallet', wallet);
+app.use('/transaction', transaction);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
