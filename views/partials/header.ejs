@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="js/bootstrap.min.js">
     <!--  <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css"> -->
 
-
     <!-- Latest compiled and minified CSS CDN-->
     <link rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4uhref=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css
         ""crossorigin="anonymous">
@@ -25,7 +24,6 @@
         crossorigin="anonymous"></script>
 
 </head>
-
 <nav class="navbar navbar-inverse navbar-fixed-top .nav">
     <div class="container">
         <div class="navbar-header">
@@ -38,6 +36,9 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
+                <li class="side-bar tmargin hidden-md hidden-lg"><a href="/"><span class="fa fa-list">&nbsp;</span>Leaderboard</a></li>
+                <li class="side-bar hidden-md hidden-lg"><a href="/transactions"><span class="fa fa-money">&nbsp;</span>Transactions</a></li>
+                <li class="side-bar hidden-md hidden-lg"><a href="#"><span class="fa fa-signal">&nbsp;</span>Statistics</a></li>
                 <li><a href="http://github.com/sparkplugnow" target="_blank " class='fa fa-github fa-2x'></a></li>
                 <li><a href="http://www.sparkplugnow.slack.com" target="_blank" class='fa fa-slack fa-2x'></a></li>
                 <li><a href="http://twitter.com/sparkplugnow" target="_blank " class='fa fa-twitter fa-2x'></a></li>
@@ -57,7 +58,7 @@
 <div class="container-fluid">
     <div class="col-md-3">
 
-        <div id="sidebar">
+        <div id="sidebar" class=' hidden-xs hidden-sm'>
             <ul class="nav navbar-nav side-bar">
                 <li class="side-bar tmargin"><a href="/"><span class="fa fa-list">&nbsp;</span>Leaderboard</a></li>
                 <li class="side-bar"><a href="/transactions"><span class="fa fa-money">&nbsp;</span>Transactions</a></li>

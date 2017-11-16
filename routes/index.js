@@ -3,25 +3,24 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const User = require('../models/User');
 const Wallet = require('../models/Wallet');
-//const creds = require('../creds');
+const creds = require('../creds');
 
-router.get('/', function (req, res, next) {
-  User
-    .find({}, function (err, users) {
-      if (err) 
-        throw err;
-      Wallet
-        .find({})
-        .sort('-balance')
-        .exec(function (err, wallets) {
-          if (err) 
-            throw err;
-          res.render('index', {
-            users: users,
-            wallets: wallets
-          })
+router.get('/', (req, res, next) => {
+  User.find({}, (err, users) => {
+    if (err) 
+      throw err;
+    Wallet
+      .find({})
+      .sort('-balance')
+      .exec((err, wallets) => {
+        if (err) 
+          throw err;
+        res.render('index', {
+          users: users,
+          wallets: wallets
         })
-    })
+      })
+  })
 })
 
 router.post('/', (req, res, next) => {
