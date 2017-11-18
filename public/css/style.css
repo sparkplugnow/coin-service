@@ -1,70 +1,5 @@
-#body {
-  background-color: #1b2431;
-  margin-top:100px;
-  color: #202020;
-  font-family: "Montserrat", "Helvetica", "Open Sans", "Arial";
-  font-size: 13px;
-  min-height:500px;
-}
-#h1{
-  color:white;
-}
-p,
-figure,
-ul,
-li {
-  margin: 0;
-  padding: 0;
-}
-nav .navbar-brand{
-  padding-top:0px;
-	font-size: 40px;
-	height:60px;
-    font-family:"Times New Roman", Times, serif;
-}
-nav ul li{
-    font-size: 20px;
-	  padding-right: 10px;
-    font-family:"Lucida Console", Monaco, monospace ;
-}
-.dropdown-menu{
-  overflow:auto;
-}
-.dropdown-menu li{
-    font-family:"Comic Sans MS", cursive, sans-serif;
-}
-#dropdown a:hover{
-  background-color:#9E9E9E;
-}
-#sidebar {
-  position: fixed;
-  top: 50px;
-  left: 220px;
-  width: 220px;
-  margin-left: -220px;
-  border: none;
-  border-radius: 0;
-  overflow-y: auto;
-  background-color: #222;
-  bottom: 0;
-  overflow-x: hidden;
-  padding-bottom: 40px;
-}
-.side-bar > li > a {
-  color: #9E9E9E;
-  width: 220px;
-}
-#sidebar > ul {
-   margin-top:50px;
-   font-size:1.3em
-}
-.side-bar > li > a:hover, 
-.side-bar >li > a:focus {
-  background-color: #E9BF1E;
-}
 .card-list {
-
-  margin-bottom:40px;
+  margin-top: 15px;
   width: 100%;
 }
 .card-list:before,
@@ -163,7 +98,7 @@ nav ul li{
   vertical-align: middle;
 }
 .projects-table td p {
-  font-size: 1.3em;
+  font-size: 12px;
 }
 .projects-table td p:last-of-type {
   color: #738297;
@@ -238,37 +173,36 @@ nav ul li{
 }
 .danger-text {
   color: #A84D43 !important;
-}footer {
-	padding:20px;
-	text-align: center;
-	color:#DCE35B;
-	font-family: tahoma;
-	font-size: 1.3em;
 }
-
-footer a {
-	color: #247BE6;
+body {
+  background-color: #1b2431;
+  color: #202020;
+  font-family: "Montserrat", "Helvetica", "Open Sans", "Arial";
+  font-size: 13px;
 }
-
-footer a:hover {
-	color: #74C44F;
+p,
+figure,
+ul,
+li {
+  margin: 0;
+  padding: 0;
 }
-ul.social-buttons li a {
-	display: block;
-	height: 40px;
-	width: 40px;
-	font-size: 20px;
-	line-height: 40px;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	transition: all 0.3s;
+.username a{
+  font-family:tahoma;
+  color:white;
+ text-transform:uppercase;
+ text-decoration:none;
 }
-
-ul.social-buttons li a:hover,
-ul.social-buttons li a:focus,
-ul.social-buttons li a:active {
-	background-color:#34495e;
+.username a:hover{
+  color:#9E9E9E;
 }
-.love{
-  color:#FF2B56;
+.text-center{
+  text-align:center;
+}
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  max-width: 960px;
+  width: 100%;
 }

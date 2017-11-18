@@ -6,9 +6,6 @@ const Wallet = require('../models/Wallet');
 const creds = require('../creds');
 
 router.get('/', (req, res, next) => {
-  User.find({}, (err, users) => {
-    if (err) 
-      throw err;
     Wallet
       .find({})
       .sort('-balance')
@@ -16,9 +13,7 @@ router.get('/', (req, res, next) => {
         if (err) 
           throw err;
         res.render('index', {
-          users: users,
           wallets: wallets
-        })
       })
   })
 })
@@ -46,9 +41,6 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/:username', (req, res, next) => {
-  User.find({}, (err, users) => {
-    if (err) 
-      throw err
     User.findOne({
       username: req.params.username
     }, (err, user) => {
@@ -60,10 +52,8 @@ router.get('/:username', (req, res, next) => {
         if (err) 
           throw err;
         res.render('user', {
-          users: users,
           user: user,
           wallet: wallet
-        });
       })
     })
   })

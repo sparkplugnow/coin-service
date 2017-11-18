@@ -1,6 +1,9 @@
 <%include partials/header.ejs%>
+    <div class="container">
         <div class='col-xs-12 col-sm-12 col-md-8 userpage'>
-            <h1 class='text-center' id='h1'><%=user.username%></h1>
+            <h1 class='text-center username'>
+                <%=user.username%>
+            </h1>
             <br>
             <table class="projects-table">
                 <tr class='text-center'>
@@ -12,49 +15,50 @@
                     <th class='table-head text-center'>Created At</th>
                     <th class='table-head text-center'>Updated At</th>
                 </tr>
-                    <tr class="">
-                        <td class='owner text-center'>
-                            <p>
+                <tr class="">
+                    <td class='owner text-center'>
+                        <p>
                             <%=user.firstname%>
-                            </p>
-                            <p></p>
-                        </td>
-                        <td class='owner text-center'>
-                            <p>
-                                <%=user.firstname%>
-                            </p>
-                            <p></p>
-                        </td>
-                        <td class='owner text-center'>
-                            <p>
-                                <%=user.admin%>
-                            </p>
-                            <p></p>
-                        </td>
-                        <td class='owner text-center'>
-                            <p>
-                                <%=user.location%>
-                            </p>
-                            <p></p>
-                        </td>
-                        <td class='owner text-center'>
-                            <p>
-                                <%=user.age%>
-                            </p>
-                            <p></p>
-                        </td>
-                        <td class='owner text-center'>
-                            <p>
-                                <%=user.created_at%>
-                            </p>
-                            <p></p>
-                        </td>
-                        <td class='owner text-center'>
-                            <p>
-                                <%=user.updated_at%>
-                            </p>
-                            <p></p>
-                        </td>
-                    </tr>
+                        </p>
+                        <p></p>
+                    </td>
+                    <td class='owner text-center'>
+                        <p>
+                            <%=user.firstname%>
+                        </p>
+                        <p></p>
+                    </td>
+                    <td class='owner text-center'>
+                        <p>
+                            <%=user.admin%>
+                        </p>
+                        <p></p>
+                    </td>
+                    <td class='owner text-center'>
+                        <p>
+                            <%=user.location%>
+                        </p>
+                        <p></p>
+                    </td>
+                    <td class='owner text-center'>
+                        <p>
+                            <%=user.age%>
+                        </p>
+                        <p></p>
+                    </td>
+                    <td class='owner text-center'>
+                        <p>
+                            <%=user.created_at%>
+                        </p>
+                        <p></p>
+                    </td>
+                    <td class='owner text-center'>
+                        <p>
+                            <%=user.updated_at%>
+                        </p>
+                        <p></p>
+                    </td>
+                </tr>
             </table>
         </div>
+    </div>
