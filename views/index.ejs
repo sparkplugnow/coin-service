@@ -1,55 +1,59 @@
 <%include partials/header.ejs%>
-
-
-  <div class="card-list">
-    <div class="card blue">
-      <div class="title">Transfer Stats</div><span class="glyphicon glyphicon-upload"></span>
-      <div class="value">89</div>
-      <div class="stat"><b>13</b>% increase</div>
-    </div>
-    <div class="card green">
-      <div class="title">Wallet Stats</div><span class="glyphicon glyphicon-upload"></span>
-      <div class="value">5,990</div>
-      <div class="stat"><b>4</b>% increase</div>
-    </div>
-    
-    <div class="card orange">
-      <div class="title">Balance</div><span class="glyphicon glyphicon-download"></span>
-      <div class="value">$80,990</div>
-      <div class="stat"><b>13</b>% decrease</div>
-    </div>
-    <div class="card red">
-      <div class="title">info thing</div><span class="glyphicon glyphicon-download"></span>
-      <div class="value">3</div>
-      <div class="stat"><b>13</b>% decrease</div>
-    </div>
+<div class="container card-list">
+  <div class="card blue">
+    <div class="title">Transfer Stats</div><span class="glyphicon glyphicon-upload"></span>
+    <div class="value">89</div>
+    <div class="stat"><b>13</b>% increase</div>
   </div>
-  <div class="projects">
-    <div class="projects-inner">
-      <header class="projects-header">
-        <div class="title">LeaderBoard</div>
+  <div class="card green">
+    <div class="title">Wallet Stats</div><span class="glyphicon glyphicon-upload"></span>
+    <div class="value">5,990</div>
+    <div class="stat"><b>4</b>% increase</div>
+  </div>
 
-        <%var keys =Object.keys(wallets)%>
-        <div class="count">| <%= keys.length%>  Users</div>
+  <div class="card orange">
+    <div class="title">Balance</div><span class="glyphicon glyphicon-download"></span>
+    <div class="value">$80,990</div>
+    <div class="stat"><b>13</b>% decrease</div>
+  </div>
+  <div class="card red">
+    <div class="title">info thing</div><span class="glyphicon glyphicon-download"></span>
+    <div class="value">3</div>
+    <div class="stat"><b>13</b>% decrease</div>
+  </div>
+</div>
+<div class="container projects">
+  <div class="projects-inner">
+    <header class="projects-header">
+      <div class="title">LeaderBoard</div>
+
+      <%var keys =Object.keys(wallets)%>
+        <div class="count">|
+          <%= keys.length%> Users</div>
         <span class="glyphicon glyphicon-download-alt"></span></header>
-      <table class="projects-table">
-        <tr class='text-center'>
-          <th class="table-head text-center">User</th>
-          <th class="table-head text-center">Balance</th>
-        </tr>
-        <%wallets.forEach(function(wallet){%>
-        <tr class="">
-          <td class='owner text-center'>
-             <p><%=wallet.owner%></p>
-            <p></p>
+    <table class="projects-table text-center">
+      <tr>
+        <th class="table-head">User</th>
+        <th class="table-head">Balance</th>
+      </tr>
+      <%wallets.forEach(function(wallet){%>
+        <tr>
+          <td class='username'>
+            <p>
+            <a href=/<%=wallet.owner %>><span><%=wallet.owner%></span> </a>
+            </p>
           </td>
-          <td class='balance text-center'>
-            <p><%=wallet.balance%></p>     
+          <td>
+            <p>
+              <%=wallet.balance%>
+            </p>
             <p></p>
           </td>
         </tr>
         <%})%>
-      </table>
-    </div>
+    </table>
   </div>
-<%include partials/footer.ejs%>
+</div>
+</body>
+
+</html>
