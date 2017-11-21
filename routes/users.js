@@ -1,15 +1,15 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const User =  require('../models/User.js');
 const Wallet = require('../models/Wallet.js');
 
-router.get('/', function (req, res, next) {
+router.get('/all', function (req, res, next) {
 
   User
     .find({}, function (err, users) {
       if (err) 
         res.send(err);
-      
+      console.log(users);
       res.send(users);
     });
 
